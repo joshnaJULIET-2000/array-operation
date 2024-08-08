@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Array Operations</title>
+</head>
+<body>
+
+    <h1>JavaScript Array Operations</h1>
+
+    <div id="output"></div> <!-- This div will hold the output -->
+
+    <script>
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num === 2) return true;
+
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function checkFirstElementPrime(arr) {
+            let output = document.getElementById("output");
+            if (arr.length === 0) {
+                output.innerHTML += "<p>Array is empty.</p>";
+                return;
+            }
+
+            let firstElement = arr[0];
+            if (isPrime(firstElement)) {
+                output.innerHTML += `<p>${firstElement} is prime.</p>`;
+            } else {
+                output.innerHTML += `<p>${firstElement} is not prime.</p>`;
+            }
+        }
+
+        function findMostFrequent(arr) {
+            let frequency = {};
+            let maxCount = 0;
+            let mostFrequentItem = null;
+
+            for (let item of arr) {
+                frequency[item] = (frequency[item] || 0) + 1;
+
+                if (frequency[item] > maxCount) {
+                    maxCount = frequency[item];
+                    mostFrequentItem = item;
+                }
+            }
+
+            return mostFrequentItem;
+        }
+
+        function displayMostFrequent(arr) {
+            let mostFrequent = findMostFrequent(arr);
+            document.getElementById("output").innerHTML += `<p>The most frequent item is ${mostFrequent}</p>`;
+        }
+
+        function checkOddOrEven() {
+            let output = document.getElementById("output");
+            for (let i = 0; i <= 15; i++) {
+                if (i % 2 === 0) {
+                    output.innerHTML += `<p>${i} is even</p>`;
+                } else {
+                    output.innerHTML += `<p>${i} is odd</p>`;
+                }
+            }
+        }
+
+        function sumOfSquares(arr) {
+            let sum = 0;
+            for (let num of arr) {
+                sum += num * num;
+            }
+            return sum;
+        }
+
+        function displaySumOfSquares(arr) {
+            let sumSquares = sumOfSquares(arr);
+            document.getElementById("output").innerHTML += `<p>The sum of squares is ${sumSquares}</p>`;
+        }
+
+        // Example usage
+        checkFirstElementPrime([7, 3, 5, 2]);
+        checkFirstElementPrime([10, 3, 5, 2]);
+        displayMostFrequent([3, 7, 3, 2, 7, 3, 3, 7]);
+        checkOddOrEven();
+        displaySumOfSquares([1, 2, 3, 4]);
+
+    </script>
+
+</body>
+</html>
